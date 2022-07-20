@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="units.png">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="fontawesome-free-6.0.0-beta3-web/css/all.min.css">
+    <title>Units Converter</title>
+</head>
+<body>
+    <div class="pagewrapper">
+        <div class="formwrapper">
+            <h2>
+                UNIT CONVERTER
+            </h2>
+            <div id="select">
+                <h3>
+                    Please select which category of units you would like to convert
+                </h3>
+                <div class="type">
+                    <div name="category" id="Weight" onclick="ucategory(this)">Weight</div>
+                    <div name="category" id="Distance" onclick="ucategory(this)">Distance</div>
+                    <div name="category" id="Volume" onclick="ucategory(this)">Volume</div>
+                    <div name="category" id="Temperature" onclick="ucategory(this)">Temperature</div>
+                    <div name="category" id="Time" onclick="ucategory(this)">TIme</div>
+                    <div name="category" id="Density" onclick="ucategory(this)">Density</div>
+                    <div name="category" id="Pressure" onclick="ucategory(this)">Pressure</div>
+                    <div name="category" id="Velocity" onclick="ucategory(this)">Velocity</div>
+                    <div name="category" id="Power" onclick="ucategory(this)">Power</div>
+                    <div name="category" id="Energy" onclick="ucategory(this)">Energy</div>
+                    <div name="category" id="Viscosity" onclick="ucategory(this)">Viscosity</div>
+                </div>
+            </div>
+            <div class="udisplay">
+                <div id="one">
+                        
+                </div>
+                <div id="two">
+                        
+                </div>
+            </div>
+            <div id="none">
+                <div id="delete"><i class="fas fa-trash"></i></div>
+                <div id="reverse"><i class="fas fa-exchange"></i></div>
+                <button onclick="check()">Convert</button>
+            </div>
+        </div>
+    </div>
+    <script src="modal.js">
+
+    </script>
+</body>
+</html>

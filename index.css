@@ -10,7 +10,7 @@ body{
 }
 .pagewrapper{
     width: 100%;
-    padding: 30px;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;

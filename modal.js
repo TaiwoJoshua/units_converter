@@ -6,13 +6,14 @@ let tunit = document.getElementById('two');
 let reverse = document.getElementById('reverse');
 let none = document.getElementById('none');
 let delet = document.getElementById('delete');
+
 function ucategory(call){
     let id = call.id;
     none.style.opacity = 1;
     if(id == "Weight"){
         let funits = `
             <label id="flabel">Milligram</label><br>
-            <input type="number" id="vfrom" maxlength="10" value="0">
+            <input type="number" id="vfrom" onkeyup="check()" maxlength="10" value="0">
             <div>
                 From:
             </div>
@@ -105,7 +106,7 @@ function ucategory(call){
     }else if(id == "Distance"){
         let funits = `
         <label id="flabel">Millimetre</label><br>
-            <input type="number" id="vfrom" maxlength="10" value="0">
+            <input type="number" id="vfrom" onkeyup="check()" maxlength="10" value="0">
             <div>
                 From:
             </div>
@@ -230,7 +231,7 @@ function ucategory(call){
     }else if(id == "Volume"){
         let funits = `
             <label id="flabel">Teaspoon</label><br>
-            <input type="number" id="vfrom" maxlength="10" value="0">
+            <input type="number" id="vfrom" onkeyup="check()" maxlength="10" value="0">
             <div>
                 From:
             </div>
@@ -387,7 +388,7 @@ function ucategory(call){
     }else if(id == "Temperature"){
         let funits = `
             <label id="flabel">Celsius</label><br>
-            <input type="number" id="vfrom" maxlength="10" value="0">
+            <input type="number" id="vfrom" onkeyup="check()" maxlength="10" value="0">
             <div>
                 From:
             </div>
@@ -425,6 +426,99 @@ function ucategory(call){
                 <div>
                     <input type="radio" name="to" onclick="check()" value="Kelvin">
                     <label for="Kelvin">Kelvin</label><br>
+                </div>
+            </div>
+        `;
+        tunit.innerHTML = tunits;
+    }else if(id == "Time"){
+        let funits = `
+            <label id="flabel">Nanosecond</label><br>
+            <input type="number" id="vfrom" onkeyup="check()" maxlength="10" value="0">
+            <div>
+                From:
+            </div>
+            <div class="units" id="funit">
+                <div>
+                    <input type="radio" name="from" onclick="check()" value="Nanosecond" checked>
+                    <label for="Nanosecond">Nanosecond</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="from" onclick="check()" value="Millisecond">
+                    <label for="Millisecond">Millisecond</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="from" onclick="check()" value="Second">
+                    <label for="Second">Second</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="from" onclick="check()" value="Minute">
+                    <label for="Minute">Minute</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="from" onclick="check()" value="Hour">
+                    <label for="Hour">Hour</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="from" onclick="check()" value="Day">
+                    <label for="Day">Day</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="from" onclick="check()" value="Week">
+                    <label for="Week">Week</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="from" onclick="check()" value="Month">
+                    <label for="Month">Month</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="from" onclick="check()" value="Year">
+                    <label for="Year">Year</label><br>
+                </div>
+            </div>
+        `;
+        funit.innerHTML = funits;
+        let tunits = `
+            <label id="tlabel">Nanosecond</label><br>
+            <input type="text" readonly id="vto">
+            <div>
+                To:
+            </div>
+            <div class="units" id="tunit">
+                <div>
+                    <input type="radio" name="to" onclick="check()" value="Nanosecond" checked>
+                    <label for="Nanosecond">Nanosecond</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="to" onclick="check()" value="Millisecond">
+                    <label for="Millisecond">Millisecond</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="to" onclick="check()" value="Second">
+                    <label for="Second">Second</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="to" onclick="check()" value="Minute">
+                    <label for="Minute">Minute</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="to" onclick="check()" value="Hour">
+                    <label for="Hour">Hour</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="to" onclick="check()" value="Day">
+                    <label for="Day">Day</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="to" onclick="check()" value="Week">
+                    <label for="Week">Week</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="to" onclick="check()" value="Month">
+                    <label for="Month">Month</label><br>
+                </div>
+                <div>
+                    <input type="radio" name="to" onclick="check()" value="Year">
+                    <label for="Year">Year</label><br>
                 </div>
             </div>
         `;
@@ -1638,32 +1732,211 @@ function check(){
             vto.value = input;
         }
     };
-    reverse.addEventListener("click", function(){
-        for(i = 0; i < l; i++){
-            if(fradio[i].checked === true){
-                x = i;
-                break;
-            }
+    if(fromv == "Nanosecond"){
+        if(tov == "Nanosecond"){
+            vto.value = input;
+        }else if(tov == "Millisecond"){
+            vto.value = input / 1000000;
+        }else if(tov == "Second"){
+            vto.value = input / 1000000000;
+        }else if(tov == "Minute"){
+            vto.value = input / 60000000000;
+        }else if(tov == "Hour"){
+            vto.value = input / 3600000000000;
+        }else if(tov == "Day"){
+            vto.value = input / 86400000000000;
+        }else if(tov == "Week"){
+            vto.value = input / 604800000000000;
+        }else if(tov == "Month"){
+            vto.value = input / (86400000000000 * 30);
+        }else if(tov == "Year"){
+            vto.value = input / (86400000000000 * 365);
         }
-        for(i = 0; i < l; i++){
-            if(tradio[i].checked === true){
-                y = i;
-                break;
-            }
+    }else if(fromv == "Millisecond"){
+        if(tov == "Nanosecond"){
+            vto.value = input * 1000000;
+        }else if(tov == "Millisecond"){
+            vto.value = input;
+        }else if(tov == "Second"){
+            vto.value = input / 1000;
+        }else if(tov == "Minute"){
+            vto.value = input / 60000;
+        }else if(tov == "Hour"){
+            vto.value = input / 3600000;
+        }else if(tov == "Day"){
+            vto.value = input / 86400000;
+        }else if(tov == "Week"){
+            vto.value = input / 604800000;
+        }else if(tov == "Month"){
+            vto.value = input / (86400000 * 30);
+        }else if(tov == "Year"){
+            vto.value = input / (86400000 * 365);
         }
-        console.log("f " + x);
-        console.log("t " + y);
-        tradio[x].checked = true;
-        fradio[y].checked = true;
-        reverse.addEventListener("click", check())
-    })
+    }else if(fromv == "Second"){
+        if(tov == "Nanosecond"){
+            vto.value = input * 1000000;
+        }else if(tov == "Millisecond"){
+            vto.value = input * 1000;
+        }else if(tov == "Second"){
+            vto.value = input;
+        }else if(tov == "Minute"){
+            vto.value = input / 60;
+        }else if(tov == "Hour"){
+            vto.value = input / 3600;
+        }else if(tov == "Day"){
+            vto.value = input / 86400;
+        }else if(tov == "Week"){
+            vto.value = input / 604800;
+        }else if(tov == "Month"){
+            vto.value = input / (86400 * 30);
+        }else if(tov == "Year"){
+            vto.value = input / (86400 * 365);
+        }
+    }else if(fromv == "Minute"){
+        if(tov == "Nanosecond"){
+            vto.value = input * 60000000000;
+        }else if(tov == "Millisecond"){
+            vto.value = input * 60000;
+        }else if(tov == "Second"){
+            vto.value = input * 60;
+        }else if(tov == "Minute"){
+            vto.value = input;
+        }else if(tov == "Hour"){
+            vto.value = input / 60;
+        }else if(tov == "Day"){
+            vto.value = input / 1440;
+        }else if(tov == "Week"){
+            vto.value = input / 10080;
+        }else if(tov == "Month"){
+            vto.value = input / (1440 * 30);
+        }else if(tov == "Year"){
+            vto.value = input / (1440 * 365);
+        }
+    }else if(fromv == "Hour"){
+        if(tov == "Nanosecond"){
+            vto.value = input * 3600000000000;
+        }else if(tov == "Millisecond"){
+            vto.value = input * 3600000;
+        }else if(tov == "Second"){
+            vto.value = input * 3600;
+        }else if(tov == "Minute"){
+            vto.value = input * 60;
+        }else if(tov == "Hour"){
+            vto.value = input;
+        }else if(tov == "Day"){
+            vto.value = input / 24;
+        }else if(tov == "Week"){
+            vto.value = input / 168;
+        }else if(tov == "Month"){
+            vto.value = input / (24 * 30);
+        }else if(tov == "Year"){
+            vto.value = input / (24 * 365);
+        }
+    }else if(fromv == "Day"){
+        if(tov == "Nanosecond"){
+            vto.value = input * 86400000000000;
+        }else if(tov == "Millisecond"){
+            vto.value = input * 86400000;
+        }else if(tov == "Second"){
+            vto.value = input * 86400;
+        }else if(tov == "Minute"){
+            vto.value = input * 1440;
+        }else if(tov == "Hour"){
+            vto.value = input * 24;
+        }else if(tov == "Day"){
+            vto.value = input;
+        }else if(tov == "Week"){
+            vto.value = input / 7;
+        }else if(tov == "Month"){
+            vto.value = input / 30;
+        }else if(tov == "Year"){
+            vto.value = input / 365;
+        }
+    }else if(fromv == "Week"){
+        if(tov == "Nanosecond"){
+            vto.value = input * 604800000000000;
+        }else if(tov == "Millisecond"){
+            vto.value = input * 604800000;
+        }else if(tov == "Second"){
+            vto.value = input * 604800;
+        }else if(tov == "Minute"){
+            vto.value = input * 10080;
+        }else if(tov == "Hour"){
+            vto.value = input * 168;
+        }else if(tov == "Day"){
+            vto.value = input * 7;
+        }else if(tov == "Week"){
+            vto.value = input;
+        }else if(tov == "Month"){
+            vto.value = input * ((1 / 30) * 7);
+        }else if(tov == "Year"){
+            vto.value = input * ((1 / 365) * 7);
+        }
+    }else if(fromv == "Month"){
+        if(tov == "Nanosecond"){
+            vto.value = input * 2628000000000000;
+        }else if(tov == "Millisecond"){
+            vto.value = input * 2628000000;
+        }else if(tov == "Second"){
+            vto.value = input * 2628000;
+        }else if(tov == "Minute"){
+            vto.value = input * 43200;
+        }else if(tov == "Hour"){
+            vto.value = input * 720;
+        }else if(tov == "Day"){
+            vto.value = input * 30;
+        }else if(tov == "Week"){
+            vto.value = input * (1 / 7) * 30;
+        }else if(tov == "Month"){
+            vto.value = input;
+        }else if(tov == "Year"){
+            vto.value = input * (1 / 365) * 30;
+        }
+    }else if(fromv == "Year"){
+        if(tov == "Nanosecond"){
+            vto.value = input * 31536000000000000;
+        }else if(tov == "Millisecond"){
+            vto.value = input * 31536000000;
+        }else if(tov == "Second"){
+            vto.value = input * 31536000;
+        }else if(tov == "Minute"){
+            vto.value = input * 525600;
+        }else if(tov == "Hour"){
+            vto.value = input * 8760;
+        }else if(tov == "Day"){
+            vto.value = input * 365;
+        }else if(tov == "Week"){
+            vto.value = input / ((1 / 365) * 7);
+        }else if(tov == "Month"){
+            vto.value = input / ((1 / 365) * 30);
+        }else if(tov == "Year"){
+            vto.value = input;
+        }
+    };
+    // reverse.addEventListener("click", function(){
+    //     for(i = 0; i < l; i++){
+    //         console.log(i);
+    //         if(fradio[i].checked == true){
+    //             console.log(i + " " + fradio[i].checked);
+    //             x = i;
+    //         }
+    //     }
+    //     for(j = 0; j < l; j++){
+    //         if(tradio[j].checked == true){
+    //             y = j;
+    //         }
+    //     }
+    //     console.log("f " + x);
+    //     console.log("t " + y);
+    //     tradio[x].checked = true;
+    //     fradio[y].checked = true;
+    //     reverse.addEventListener("click", check())
+    // })
     delet.addEventListener("click", function(){
         vfrom.value = 0;
         delet.addEventListener("click", check());
     })
 }
-
-
 
 
 

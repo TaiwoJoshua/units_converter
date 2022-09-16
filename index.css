@@ -71,15 +71,15 @@ button{
     padding: 8px;
     background-color: transparent;
     border: 1px solid white;
-    border-radius: 10px;
+    border-radius: 50%;
 }
-button:hover, #reverse:hover{
+#convert:hover, #delete:hover{
     cursor: pointer;
     color: black;
     background-color: white;
     transition: 1s;
 }
-#reverse:hover .fa-exchange{
+#convert:hover .fa-exchange, #delete:hover .fa-trash{
     cursor: pointer;
     color: black;
     background-color: white;
@@ -91,7 +91,7 @@ button:hover, #reverse:hover{
 input[type="radio"]:checked{
     accent-color: gray;
 }
-#reverse, #delete{
+#delete{
     padding: 8px;
     border-radius: 50%;
     border: 1px solid white;
